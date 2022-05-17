@@ -1,0 +1,12 @@
+<div class="picture-me-card" [ngClass]="{'snapped': titleButton == 'Oups un Picturelike !'}">
+    <h2>{{ pictureMe.title }}</h2>
+    <p>Créé le {{ pictureMe.createdDate }}</p>
+    <img [src]="pictureMe.url" [alt]="pictureMe.title">
+    <p>{{ pictureMe.description }}</p>
+    <p *ngIf="pictureMe.location">Photo prise à: {{ pictureMe.location }}</p>
+    <p>
+        <button (click)="onAddPictureLike()">{{titleButton}}</button>
+        <span [ngStyle]="{color: 'rgb(0, ' + pictureMe.pictureLike + ', 0)'}">{{ pictureMe.pictureLike }}</span>
+    </p>
+
+</div>
