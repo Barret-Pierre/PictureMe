@@ -1,6 +1,7 @@
 import { Component, Input, OnInit} from '@angular/core';
 import { PictureMe } from '../models/picture-me-model';
 import { PictureMeService } from '../services/picture-me.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -8,13 +9,14 @@ import { PictureMeService } from '../services/picture-me.service';
   templateUrl: './picture-me.component.html',
   styleUrls: ['./picture-me.component.scss']
 })
+
 export class PictureMeComponent implements OnInit {
 
   @Input() pictureMe!: PictureMe;
 
   titleButton!: string;
 
-  constructor(private pictureMeService: PictureMeService) { }
+  constructor(private pictureMeService: PictureMeService, private router: Router) { }
 
   ngOnInit(): void {
     this.titleButton = 'Picturelike !'
@@ -27,6 +29,9 @@ export class PictureMeComponent implements OnInit {
       this.pictureMeService.likePictureMeById(this.pictureMe.id, 'like');
       this.titleButton = 'Picturelike !';
     }
+  }
+  onViewFaceSnap() {
+    this.router.navigateByUrl("picturesMe/" + this.pictureMe.id)
   }
 
 }
